@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "seed": "node seeds/index.js"
+    "dev": "concurrently \"npm run watch:tailwind\" \"nodemon server.js\"   ",
+    "seed": "node seeds/index.js",
+    "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css",
+    "watch:tailwind": "postcss public/css/tailwind.css -o public/css/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/pradeepkhanal23/tech-blog-MVC#readme",
   "dependencies": {
+    "autoprefixer": "^10.4.19",
     "bcrypt": "^5.1.1",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.4.5",
@@ -27,6 +30,13 @@
     "express-handlebars": "^7.1.2",
     "express-session": "^1.18.0",
     "pg": "^8.12.0",
-    "sequelize": "^6.37.3"
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "sequelize": "^6.37.3",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.3"
   }
 }

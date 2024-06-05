@@ -1,16 +1,19 @@
-<div
-  class="max-w-7xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto"
->
-  <h5
-    class="mb-2 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white"
-  >Why MVC is so important?</h5>
-  <p class="mb-3 font-normal text-gray-500 text-lg dark:text-gray-400">Lorem
-    ipsum dolor sit amet, consectetur adipisicing elit. Incidunt nesciunt
-    praesentium pariatur quod neque assumenda id beatae architecto aspernatur.
-    Eaque perferendis vitae tenetur quasi ipsum ut officia quam dolorum esse?
-  </p>
-  <div class="italic">
-    <span class="font-bold text-purple-400">Posted By:
-      <span>Pradeep</span>@12/12/2024</span>
-  </div>
-</div>
+{{#each posts as |post|}}
+
+  <article
+    class="max-w-7xl p-6 bg-white border border-gray-200 rounded-lg shado mx-auto my-3 text-sm"
+  >
+    <h5
+      class="mb-2 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white"
+    >{{post.title}}</h5>
+    <p
+      class="mb-3 font-normal text-gray-500 text-lg dark:text-gray-400"
+    >{{post.content}}
+    </p>
+    <div class="italic">
+      <span class="font-bold text-purple-400">Posted By:
+        <span>{{post.user.name}}</span>
+        @{{post.createdAt}}</span>
+    </div>
+  </article>
+{{/each}}

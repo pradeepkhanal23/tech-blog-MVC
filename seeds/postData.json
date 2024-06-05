@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Introduction to JavaScript",
+    "content": "JavaScript is a versatile programming language used primarily for web development.",
+    "user_id": 1
+  },
+  {
+    "title": "Understanding CSS Flexbox",
+    "content": "Flexbox is a powerful layout module that makes it easy to design flexible responsive layout structure.",
+    "user_id": 2
+  },
+  {
+    "title": "Getting Started with React",
+    "content": "React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.",
+    "user_id": 3
+  }
+]

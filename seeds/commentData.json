@@ -1,0 +1,17 @@
+[
+  {
+    "comment_text": "Great introduction! Looking forward to more content.",
+    "user_id": 2,
+    "post_id": 1
+  },
+  {
+    "comment_text": "Flexbox is indeed a game changer in CSS layout!",
+    "user_id": 3,
+    "post_id": 2
+  },
+  {
+    "comment_text": "React is awesome. Thanks for this post!",
+    "user_id": 1,
+    "post_id": 3
+  }
+]

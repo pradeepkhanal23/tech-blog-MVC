@@ -1,0 +1,33 @@
+<header class="body-font m-4 dark:bg-gray-800 mt-2">
+  <div
+    class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between gap-3"
+  >
+    <a
+      class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+      href="/"
+    >
+
+      <span class="ml-3 text-3xl uppercase font-bold tracking-tight">Tech Blog</span>
+    </a>
+    {{! we only wanna show this part if the user is logged in }}
+    {{! <nav
+      class="md:ml-auto md:mr-auto flex flex-wrap items-center justify-center text-xl"
+    >
+      <a class="mr-5 hover:text-blue-900 cursor-pointer">Home</a>
+      <a class="mr-5 hover:text-blue-900 cursor-pointer">Dashboard</a>
+      <a class="mr-5 hover:text-blue-900 cursor-pointer">Logout</a>
+
+    </nav> }}
+    <div>
+      <a href="/login">
+        <button
+          class="text-lg inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0"
+        >Login
+        </button></a>
+      <button
+        class="text-lg inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0"
+      >Signup
+      </button>
+    </div>
+  </div>
+</header>

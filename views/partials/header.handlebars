@@ -7,27 +7,33 @@
       href="/"
     >
 
-      <span class="ml-3 text-3xl uppercase font-bold tracking-tight">Tech Blog</span>
+      <span
+        class="ml-3 text-3xl font-mono uppercase font-bold tracking-normal"
+      >Tech Blog</span>
     </a>
     {{! we only wanna show this part if the user is logged in }}
-    {{! <nav
-      class="md:ml-auto md:mr-auto flex flex-wrap items-center justify-center text-xl"
-    >
-      <a class="mr-5 hover:text-blue-900 cursor-pointer">Home</a>
-      <a class="mr-5 hover:text-blue-900 cursor-pointer">Dashboard</a>
-      <a class="mr-5 hover:text-blue-900 cursor-pointer">Logout</a>
+    {{#if logged_in}}
+      <nav
+        class="md:ml-auto md:mr-auto flex flex-wrap items-center justify-center text-xl"
+      >
+        <a class="mr-5 hover:text-blue-900 cursor-pointer">Home</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer">Dashboard</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer">Logout</a>
+      </nav>
 
-    </nav> }}
-    <div>
-      <a href="/login">
-        <button
-          class="text-lg inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0"
-        >Login
-        </button></a>
-      <button
-        class="text-lg inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0"
-      >Signup
-      </button>
-    </div>
+    {{else}}
+      <div>
+        <a href="/auth/login">
+          <button
+            class="text-lg inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0"
+          >Login
+          </button></a>
+        <a href="/auth/signup">
+          <button
+            class="text-lg inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded mt-4 md:mt-0"
+          >Signup
+          </button></a>
+      </div>
+    {{/if}}
   </div>
 </header>

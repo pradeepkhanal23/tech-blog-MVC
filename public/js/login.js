@@ -1,15 +1,16 @@
 const loginForm = document.querySelector("#login-form");
-let email = document.querySelector("#email");
-let password = document.querySelector("#password");
 
 async function handleSubmit(e) {
   e.preventDefault();
+
+  let email = document.querySelector("#email");
+  let password = document.querySelector("#password");
 
   if (email && password) {
     email = email.value.trim();
     password = password.value.trim();
     try {
-      const response = await fetch("/login", {
+      const response = await fetch("/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

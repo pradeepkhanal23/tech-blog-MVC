@@ -1,4 +1,4 @@
-const { Post, User } = require("../models");
+const { Post, User, Comment } = require("../models");
 const router = require("express").Router();
 
 //Homepage route
@@ -12,6 +12,9 @@ router.get("/", async (req, res) => {
           attributes: {
             exclude: ["password"],
           },
+        },
+        {
+          model: Comment,
         },
       ],
       order: [["createdAt", "DESC"]],

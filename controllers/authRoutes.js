@@ -1,5 +1,8 @@
 const User = require("../models/User");
 const router = require("express").Router();
+const capitalize = require("../utils/helpers");
+const { Op } = require("sequelize");
+const withAuth = require("../utils/auth");
 
 // when the user request for login page, we either show them the login page if the user is not logged in OR we show them the dashboard if the user is logged in
 
@@ -66,36 +69,63 @@ router.get("/signup", async (req, res) => {
 
 // POST SIGNUP
 router.post("/signup", async (req, res) => {
-  const { name, email, password } = req.body;
+  let { username, email, password } = req.body;
 
-  if (name && email && password) {
+  if (username && email && password) {
     try {
+      email = email.toLowerCase();
       const userCheck = await User.findOne({
         where: {
-          name,
-          email,
+          [Op.or]: [{ username }, { email }],
         },
       });
 
       if (userCheck) {
-        res.json({
+        res.status(400).json({
           message: "user alread exists, please login!",
         });
-        res.render("login");
       } else {
-        const newUser = await User.create(req.body);
-        res.json({
+        username = capitalize(username);
+
+        console.log(username, email);
+        const newUser = await User.create({
+          username,
+          email,
+          password,
+        });
+
+        //using return to explicilty exit and stop other execution
+        //considered a better practice
+        return res.status(201).json({
           newUser,
           message: "new user created",
         });
       }
     } catch (err) {
       console.log("Error creating new user", err);
+
+      return res.status(500).json({
+        message: "Internal Server Error",
+      });
     }
   } else {
-    res.status(400).json({
+    return res.status(400).json({
       message: "Please enter all the fields with valid inputs",
     });
+  }
+});
+
+// Logout route
+router.get("/logout", withAuth, async (req, res) => {
+  try {
+    // Destroy the session to log out the user
+    req.session.destroy(() => {
+      // Redirect the user to the login page after logging out
+      res.redirect("/auth/login");
+    });
+  } catch (err) {
+    console.error("Error logging out:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

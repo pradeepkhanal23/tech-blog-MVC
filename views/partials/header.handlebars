@@ -16,9 +16,15 @@
       <nav
         class="md:ml-auto md:mr-auto flex flex-wrap items-center justify-center text-xl"
       >
-        <a class="mr-5 hover:text-blue-900 cursor-pointer">Home</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer">Dashboard</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer">Logout</a>
+        <a href="/" class="mr-5 hover:text-blue-900 cursor-pointer">Home</a>
+        <a
+          href="/dashboard"
+          class="mr-5 hover:text-blue-900 cursor-pointer"
+        >Dashboard</a>
+        <a
+          href="/auth/logout"
+          class="mr-5 hover:text-blue-900 cursor-pointer"
+        >Logout</a>
       </nav>
 
     {{else}}

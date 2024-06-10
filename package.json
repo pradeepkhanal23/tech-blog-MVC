@@ -9,9 +9,7 @@
     "dev": "concurrently \"npm run watch:tailwind\" \"nodemon server.js\"   ",
     "seed": "node seeds/index.js",
     "tailwind:css": "postcss public/css/tailwind.css -o public/css/style.css",
-    "watch:tailwind": "postcss public/css/tailwind.css -o public/css/style.css --watch",
-    "migrate": "npx sequelize-cli db:migrate",
-    "setup": "npm run migrate && npm run seed && npm start"
+    "watch:tailwind": "postcss public/css/tailwind.css -o public/css/style.css --watch"
   },
   "repository": {
     "type": "git",

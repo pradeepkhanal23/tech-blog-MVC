@@ -4,11 +4,12 @@ const routes = require("./controllers");
 const exphbs = require("express-handlebars");
 const sequelize = require("./config/connection");
 const session = require("express-session");
+const helpers = require("./utils/helpers");
 
 //initializinf the main app with express server
 const app = express();
 //setting up the  port number
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // creating a class named SequelizeStore that can be used to store session data in a Sequelize database instead of the default in-memory storage.
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -17,6 +18,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const hbs = exphbs.create({
   //registering partials in our hbs instance
   partialsDir: path.join(__dirname, "views/partials"),
+  helpers: helpers,
 });
 
 //creating our custom session object with few properties based on our requirements

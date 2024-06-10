@@ -1,36 +1,85 @@
-<div
+{{!-- <div
   class="max-w-7xl p-6 bg-white border border-gray-200 rounded-lg shadow mx-auto my-3 text-sm"
 >
   <span class="text-4xl">Hello, {{userPostObj.name}}</span>
   <p class="text-xl">Welcome to your dashboard!!!</p>
-</div>
+</div> --}}
+<p
+  class="text-lg pl-10 font-mono text-purple-600 underline underline-offset-5 tracking-tight"
+>Hello,
+  {{userPostObj.name}}, Welcome to your dashboard!!</p>
+{{! <p class="text-3xl text-center uppercase font-sans font-bold mt-5">Your Posts</p> }}
 
-<p class="text-3xl text-center uppercase font-bold">Your Posts</p>
+<section id="post-container">
+  {{#each userPostObj.posts as |post|}}
 
-{{#each userPostObj.posts as |post|}}
+    <article
+      class="max-w-7xl p-6 bg-white border border-gray-200 rounded-lg shadow mx-auto my-3 text-sm"
+    >
+      <h5
+        class="mb-2 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white"
+      >{{post.title}}</h5>
+      <p
+        class="mb-3 font-normal text-gray-500 text-lg dark:text-gray-400"
+      >{{post.content}}
+      </p>
+      <div class="italic">
+        <span class="font-bold text-purple-400">Posted@
+          {{formatDate post.createdAt}}</span>
+      </div>
+    </article>
 
-  <article
-    class="max-w-7xl p-6 bg-white border border-gray-200 rounded-lg shadow mx-auto my-3 text-sm"
+  {{/each}}
+</section>
+
+<div
+  id="crud-modal"
+  class="relative hidden bg-white rounded-lg p-5 flex-col md:ml-auto max-w-4xl mx-auto shadow border-gray-300 mt-10"
+>
+  <button
+    id="close-btn"
+    class="absolute -top-3 right-0 z-10 p-1 bg-red-400 text-white"
   >
-    <h5
-      class="mb-2 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white"
-    >{{post.title}}</h5>
-    <p
-      class="mb-3 font-normal text-gray-500 text-lg dark:text-gray-400"
-    >{{post.content}}
-    </p>
-    <div class="italic">
-      <span class="font-bold text-purple-400">Posted By:
-        <span>{{post.user.name}}</span>
-        @{{post.createdAt}}</span>
-    </div>
-  </article>
-
-  <div class="text-center mt-5">
-    <button
-      type="button"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-xl px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    > Create New Post</button>
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <h2
+    class="text-gray-900 text-xl font-bold text-center uppercase title-font mb-5"
+  >Create Post</h2>
+  <div class="relative mb-4">
+    <label for="title" class="leading-7 text-base text-gray-600">Post Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="Introduction to Javascript"
+      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+    />
   </div>
+  <div class="relative mb-4">
+    <label for="title" class="leading-7 text-base text-gray-600 mb-1">Post
+      Content</label>
+    <input
+      type="text"
+      id="content"
+      name="content"
+      placeholder="JavaScript is a versatile programming language used primarily for web development"
+      class="w-full bg-white rounded border border-gray-300 focus:border-blue-800 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+    />
+  </div>
+  <button
+    type="submit"
+    class="block mx-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  >Create Post</button>
+</div>
+<!-- Modal toggle -->
+<button
+  id="create-post-btn"
+  data-modal-target="crud-modal"
+  data-modal-toggle="crud-modal"
+  class="block mx-auto my-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+  type="button"
+>
+  + New Post
+</button>
 
-{{/each}}
+<script src="/js/modal.js"></script>

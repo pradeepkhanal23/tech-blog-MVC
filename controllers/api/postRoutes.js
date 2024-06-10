@@ -19,6 +19,10 @@ router.get("/", async (req, res) => {
             },
           ],
         },
+        {
+          model: User,
+          attributes: ["id", "name", "email"],
+        },
       ],
     });
     res.status(200).json(posts);
@@ -43,6 +47,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//POST method
 router.post("/", withAuth, async (req, res) => {
   try {
     // Create a new post and associate it with the authenticated user
@@ -52,7 +57,28 @@ router.post("/", withAuth, async (req, res) => {
       user_id: req.session.userId, // Associate the post with the authenticated user
     });
 
-    res.status(201).json(newPost);
+    // Fetch the newly created post with associated user and comments
+    const createdPost = await Post.findByPk(newPost.id, {
+      attributes: ["id", "title", "content", "createdAt"],
+      include: [
+        {
+          model: Comment,
+          attributes: ["id", "comment_text", "createdAt"],
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name", "email"],
+            },
+          ],
+        },
+        {
+          model: User,
+          attributes: ["id", "name", "email"],
+        },
+      ],
+    });
+
+    res.status(201).json(creat);
   } catch (error) {
     console.error("Error creating post:", err);
     res.status(500).json({ message: "Internal Server Error" });

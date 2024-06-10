@@ -81,13 +81,12 @@ router.post("/signup", async (req, res) => {
       });
 
       if (userCheck) {
-        res.status(400).json({
+        return res.status(400).json({
           message: "user alread exists, please login!",
         });
       } else {
         username = capitalize(username);
 
-        console.log(username, email);
         const newUser = await User.create({
           username,
           email,

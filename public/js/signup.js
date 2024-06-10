@@ -1,26 +1,28 @@
 const signupForm = document.querySelector("#signup-form");
 
+const username = document.querySelector("#name");
+const email = document.querySelector("#email");
+const password = document.querySelector("#password");
+
 async function handleSubmit(e) {
   e.preventDefault();
 
-  let username = document.querySelector("#name");
-  let email = document.querySelector("#email");
-  let password = document.querySelector("#password");
-
   if (username && email && password) {
+    username = username.value.trim();
     email = email.value.trim();
     password = password.value.trim();
-    username = username.value.trim();
+
+    const newUserToCreate = {
+      username,
+      email,
+      password,
+    };
 
     try {
       const response = await fetch("/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        }),
+        body: JSON.stringify(newUserToCreate),
       });
 
       if (response.ok) {

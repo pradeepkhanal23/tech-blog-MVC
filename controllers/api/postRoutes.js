@@ -78,9 +78,9 @@ router.post("/", withAuth, async (req, res) => {
       ],
     });
 
-    res.status(201).json(creat);
+    res.status(201).json(createdPost);
   } catch (error) {
-    console.error("Error creating post:", err);
+    console.error("Error creating post:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
